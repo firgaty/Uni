@@ -13,14 +13,13 @@ class Entreprise {
   public void affiche() {
     System.out.println(this.nom + " :");
     if(!premierExiste()) {
-      premierExiste();
       return;
     }
     premier.affiche();
   }
 
   public boolean appartient(String n) {
-    if(!premierExiste()) return premierExiste();
+    if(!premierExiste()) return false;
     return premier.appartient(n);
   }
 
@@ -30,7 +29,7 @@ class Entreprise {
       return;
     }
     if(this.appartient(emp.getNom())) return;
-    if(this.premier.getSuiv().getEmploye().getSalaire()> emp.getSalaire()) {
+    if(this.premier.getEmploye().getSalaire() > emp.getSalaire()) {
       Cellule cel = this.premier;
       Cellule cel2 = new Cellule(emp, cel);
       this.premier = cel2;
@@ -42,7 +41,6 @@ class Entreprise {
 
   public void demission(String n) {
     if(!premierExiste()) {
-      premierExiste();
       return;
     }
     if(this.premier.getEmploye().getNom() == n) {
@@ -65,7 +63,6 @@ class Entreprise {
     // Cette fonction renvoie une sous-liste de cellules copiés de celles de la liste principale.
 
     if(!premierExiste()) {
-      premierExiste();
       Entreprise out = new Entreprise(this.nom);
       return out;
     }
@@ -80,7 +77,6 @@ class Entreprise {
     // Cette fonction renvoie une sous-liste de cellules dela premiere liste en la détruisant.
 
     if(!premierExiste()) {
-      premierExiste();
       return this;
     }
 
@@ -90,13 +86,13 @@ class Entreprise {
   }
 
   public boolean croissante() {
-    if(!premierExiste()) return premierExiste();
+    if(!premierExiste()) return false;
     return this.premier.croissante();
   }
 
   public boolean premierExiste() {
     if(premier == null) {
-      System.out.println("L'entrprise n'emploie personne.");
+      System.out.println("L'entreprise " + this.nom + " n'emploie personne.");
       return false;
     }
     return true;
@@ -119,28 +115,19 @@ class Entreprise {
 
   public static Entreprise trierParSalaire(Entreprise e) {
     // renvoie une nouvelle instance d'Entreprise dont les employers sont triés par ordre croissant de salaire.
-    Entreprise ent = new Entreprise(e.getNom(), e.getPremier());
-    if(!ent.premierExiste()) return ent;
+    if(!e.premierExiste()) return new Entreprise(e.getNom());
 
-    Cellule cel = ent.getPremier();
-    Cellule cel2 = cel.getSuiv();
-    do {
-      while(cel2 != null) {
-        if(cel.getEmploye().getSalaire() > cel2.getEmploye().getSalaire()) {
-          ent.setPremier(cel.getSuiv());
-          cel.setSuiv(cel2.getSuiv());
-          cel2.setSuiv(cel);
-          cel2 = null;
-        } else {
-          cel2 = cel2.getSuiv();
-        }
-      }
-      if(cel.getSuiv() == null) cel = null;
-      else {
-        cel = cel.getSuiv();
-        cel2 = cel.getSuiv();
-      }
-    } while (cel != null);
+    Cellule premier = new Cellule(e.getPremier().getEmploye());
+    Entreprise ent = new Entreprise(e.getNom(), premier);
+
+    Cellule cel = e.getPremier();
+
+    if(cel.getSuiv() == null) return ent;
+
+    while (cel.getSuiv() != null) {
+      cel = cel.getSuiv();
+      ent.ajout(cel.getEmploye());
+    }
     return ent;
   }
 

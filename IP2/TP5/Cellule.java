@@ -44,7 +44,7 @@ class Cellule {
   }
 
   public Cellule choixSalaire(int min, int max) {
-    if(this.emp.getSalaire() >= min || this.emp.getSalaire() <= max) {
+    if(this.emp.getSalaire() >= min && this.emp.getSalaire() <= max) {
       Cellule cel = new Cellule(this.emp);
       if(this.suivant == null) return cel;
       cel.setSuiv(this.suivant.choixSalaire(min, max));
@@ -55,7 +55,7 @@ class Cellule {
   }
 
   public Cellule choixSalaire2(int min, int max) {
-    if(this.emp.getSalaire() >= min || this.emp.getSalaire() <= max) {
+    if(this.emp.getSalaire() >= min && this.emp.getSalaire() <= max) {
       if(this.suivant == null) return this;
       this.suivant = this.suivant.choixSalaire2(min, max);
       return this;
@@ -76,7 +76,7 @@ class Cellule {
       this.suivant = new Cellule(emp);
       return;
     }
-    if(this.suivant.getEmploye().getSalaire() < emp.getSalaire()) {
+    if(this.suivant.getEmploye().getSalaire() > emp.getSalaire()) {
       this.suivant = new Cellule(emp, this.suivant);
       return;
     }

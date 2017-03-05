@@ -35,6 +35,7 @@ class Test {
     System.out.println("=========================");
 
     // Test ajout.
+    System.out.println("// Test ajout.");
     ent.ajout(e10);
     ent.ajout(e11);
     ent.ajout(e10);
@@ -42,20 +43,54 @@ class Test {
     System.out.println("=========================");
 
     // Test demission.
+    System.out.println("// Test demission.");
     ent.demission("Chris");
     ent.affiche();
     System.out.println("=========================");
 
     // Test augmente.
+    System.out.println("// Test augmente: Hector + 1023.");
     ent.augmente("Hector", 1023);
     ent.affiche();
     System.out.println("=========================");
 
     // Test trierParSalaire.
-    ent = Entreprise.trierParSalaire(ent);
+    System.out.println("// Test trierParSalaire.");
+    Entreprise ent2 = new Entreprise(ent.getNom());
+    ent2 = Entreprise.trierParSalaire(ent);
+    ent2.affiche();
     System.out.println("=========================");
 
+    // Autres :
+    Entreprise ent3 = new Entreprise("Entreprise2.corp");
+    ent3.ajout(e12);
+    ent3.ajout(e13);
+    ent3.ajout(e14);
+    ent3.ajout(e15);
+    ent3.ajout(e16);
 
+    ent2.acquisition(ent3);
+    System.out.println("// Test acquisition.");
+    ent2.affiche();
+    System.out.println("=========================");
 
+    if(ent.croissante()) System.out.println("ent est croissante");
+    else System.out.println("ent n'est pas croissante");
+    if(ent2.croissante()) System.out.println("ent2 est croissante");
+    else System.out.println("ent2 n'est pas croissante");
+    System.out.println("=========================");
+
+    System.out.println("// Test choixSalaire.");
+    Entreprise ent4 = ent2.choixSalaire(2000, 5000);
+    ent4.setNom("Entreprise4.corp");
+    ent4.affiche();
+    ent2.affiche();
+
+    System.out.println("=========================");
+    System.out.println("// Test choixSalaire2.");
+    Entreprise ent5 = ent2.choixSalaire2(2000, 5000);
+    ent5.setNom("Entreprise5.corp");
+    ent5.affiche();
+    ent2.affiche();
   }
 }
