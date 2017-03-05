@@ -1,2 +1,2 @@
 # Uni
-Repositiry for my university projects.
+Repository for my university projects.
