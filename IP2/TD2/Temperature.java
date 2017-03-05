@@ -1,0 +1,3 @@
+class Temperature {
+  private double
+}
