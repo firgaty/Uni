@@ -93,11 +93,11 @@ class Bank {
 	private Quizz mainMenu(Quizz q) {
 		while(true) {
 			System.out.print("\033[H\033[2J");
-			System.out.println(   "1) Ajouter une question au Quizz.\n"
-								+ "2) Retirer une question.\n"
-								+ "3) Modifier l'ordre des questions existentes.\n"
-								+ "4) Voir les questions du Quizz.\n"
-								+ "0) Terminer et lancer le Quizz.");
+			System.out.println(   "1) Add a new question to the quizz.\n"
+								+ "2) Remove a question.\n"
+								+ "3) Modify the question's order.\n"
+								+ "4) See the current questions.\n"
+								+ "0) End the setup of the quizz and... LAUNCH IT !");
 		
 			switch(IntInput(0, 4)){
 				case 1 : {
@@ -113,7 +113,11 @@ class Bank {
 					break;
 				}
 				case 4 : {
+					System.out.print("\033[H\033[2J");
 					System.out.println(q.description());
+					Scanner scan = new Scanner(System.in);
+					System.out.println("To go back to last menu, press any key.");
+					scan.next();
 					break;
 				}
 				case 0 : {
