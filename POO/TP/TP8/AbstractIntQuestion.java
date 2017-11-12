@@ -9,10 +9,15 @@ abstract class AbstractIntQuestion extends Question {
 	@Override
 	public boolean isCorrect(String answer) {
 		try {
-			return Integer.parseInt(answer) == this.answer;
+			return isCorrect(Integer.parseInt(answer));
 		} catch (NumberFormatException e) {
 			System.out.println("This is not a valid number (It must be an integer)");
 			return false;
 		}
+	}
+
+	abstract boolean isCorrect(int answer);
+	public String getAnswer() {
+		return Integer.toString(answer);
 	}
 }

@@ -1,5 +1,5 @@
 class StringQuestion extends Question {
-	private final String answer;
+	protected final String answer;
 
 	public StringQuestion(String q, int w, String a) {
 		super(q, w);
@@ -7,6 +7,10 @@ class StringQuestion extends Question {
 	}
 
 	public boolean isCorrect(String a) {
-		return this.answer == a;
+		return this.answer.equals(a);
+	}
+
+	public String getAnswer() {
+		return answer;
 	}
 }

@@ -16,8 +16,11 @@ abstract class Question {
 	}
 
 	abstract boolean isCorrect(String answer);
+	
 	@Override
 	public String toString() {
-		return title + " | " + weight + ":";
+		return title + " | " + weight + ": ";
 	}
+
+	abstract String getAnswer();
 }
