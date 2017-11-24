@@ -11,19 +11,31 @@ class Entry {
 
 	@Override
 	public String toString() {
-		return m_name + m_elem.toString();
+		return m_name + "\t\t" + m_elem.toString();
 	}
 
 	public Element getElem() {
 		return m_elem;
 	}
 
+	public void setElem(Element e) {
+		m_elem = e;
+	}
+
 	public String getName() {
 		return m_name;
 	}
 
+	public void setName(String name) {
+		m_name = name;
+	}
+
 	public Folder getParentFolder() {
 		return m_parentFolder;
+	}
+
+	public void setParentFolder(Folder f) {
+		m_parentFolder = f;
 	}
 
 	public void delete() {

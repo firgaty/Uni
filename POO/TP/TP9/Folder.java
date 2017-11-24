@@ -10,8 +10,8 @@ class Folder extends Element implements Displayable {
 		this.m_parent = p;
 
 		if(m_parent != null)
-			m_entries.add(new ReadOnlyEntry(m_parent.getParent(), ".", m_parent));
-		m_entries.add(new ReadOnlyEntry(m_parent, "..", this));
+			m_entries.add(new ReadOnlyEntry(m_parent.getParent(), "..", m_parent));
+		m_entries.add(new ReadOnlyEntry(m_parent, ".", this));
 	}
 
 	public Folder() {
@@ -45,10 +45,45 @@ class Folder extends Element implements Displayable {
 		return out;
 	}
 
+	public boolean hasSubFile(String name) {
+		for(Entry e : m_entries) {
+			if(e.getName().equals(name))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean hasSubFolder(String name) {
+		for(Entry e : m_entries) {
+			if(e.getName().equals(name) && e.getElem().getType().equals("folder"))
+				return true;
+		}
+		return false;
+	}
+
 	@Override
 	public void display() {
 		for(Entry e : m_entries) {
 			System.out.println(e.toString());
 		}
+	}
+
+	public void addEntry(Entry e) {
+		m_entries.add(e);
+	}
+
+	public void removeLastEntry() {
+		m_entries.removeLast();
+	}
+
+	public boolean removeEntry(Entry r) {
+		for(Entry e : m_entries) {
+			if(e == r) {
+				m_entries.remove(r);
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
